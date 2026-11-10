@@ -1,14 +1,25 @@
 (() => {
   const galleries = {
     weddings: [
-      ["images/wedding/750A2710.jpg.webp", "Bride in white gown"],
-      ["images/wedding/750A2715.jpg.webp", "Bridal portrait in a white gown"],
-      ["images/wedding/750A2718.jpg.webp", "Bride in her wedding gown"],
-      ["images/wedding/750A2730.jpg.webp", "Full-length bridal portrait"],
-      ["images/wedding/750A2732.jpg.webp", "Bride in white wedding attire"],
-      ["images/wedding/750A2855.jpg.webp", "Wedding reception portrait"]
+      ["images/Pre wedding shoot/original-wedding-05.webp", "Bride in her wedding gown"],
+      ["images/Pre wedding shoot/original-wedding-06.webp", "Black-and-white bridal portrait"],
+      ["images/Pre wedding shoot/original-wedding-07.webp", "Bride holding her bouquet"],
+      ["images/Pre wedding shoot/original-wedding-08.webp", "Bride with her wedding bouquet"],
+      ["images/Pre wedding shoot/original-wedding-09.webp", "Bride and groom together"],
+      ["images/Pre wedding shoot/original-wedding-10.webp", "Bride celebrating with her bouquet"]
+    ],
+    "prewedding-gallery": [
+      ["images/Pre wedding shoot/750A2710.jpg.webp", "Pre-wedding portrait"],
+      ["images/Pre wedding shoot/750A2715.jpg.webp", "Pre-wedding portrait"],
+      ["images/Pre wedding shoot/750A2718.jpg.webp", "Pre-wedding portrait"],
+      ["images/Pre wedding shoot/750A2730.jpg.webp", "Pre-wedding portrait"],
+      ["images/Pre wedding shoot/750A2732.jpg.webp", "Pre-wedding portrait"],
+      ["images/Pre wedding shoot/750A2855.jpg.webp", "Pre-wedding portrait"],
+      ["images/Pre wedding shoot/750A3023.jpg.webp", "Pre-wedding celebration"]
     ],
     traditional: [
+      ["images/Pre wedding shoot/original-wedding-03.webp", "Bride in traditional introduction attire"],
+      ["images/Pre wedding shoot/original-wedding-04.webp", "Bride at a traditional introduction celebration"],
       ["images/traditional-introduction/750A8978-2.jpg.webp", "Traditional introduction portrait"],
       ["images/traditional-introduction/750A8987.jpg.webp", "Traditional ceremony attire"],
       ["images/traditional-introduction/750A9462.jpg.webp", "Celebration in traditional dress"],
@@ -37,27 +48,46 @@
       ["images/graduation/COLE8449.jpg.webp", "Graduate celebrating"],
       ["images/graduation/COLE8460.jpg.webp", "Graduation celebration portrait"]
     ],
-    "wildlife-gallery": [
-      ["images/wildlife/elephant.webp", "Elephant in its natural habitat"]
+    "birthday-gallery": [
+      ["images/Parties/Birthdays/birthdays-01.webp", "A night made to shine", "Woman celebrating outdoors at night"],
+      ["images/Parties/Birthdays/birthdays-02.webp", "Own your moment", "Woman posing outdoors at night"],
+      ["images/Parties/Birthdays/birthdays-03.webp", "All eyes on the birthday star", "Woman standing with a man outdoors"],
+      ["images/Parties/Birthdays/birthdays-04.webp", "Every detail deserves its moment", "Woman posing for a close-up portrait"],
+      ["images/Parties/Birthdays/birthdays-05.webp", "The joy is in the little moments", "Woman smiling with a man outdoors"],
+      ["images/Parties/Birthdays/birthdays-06.webp", "A celebration to remember", "Woman and man posing together outdoors"]
+    ],
+    "shower-gallery": [
+      ["images/Parties/baby and bridal showers/showers-01.webp", "A little love is on the way", "Expectant mother in a maternity gown"],
+      ["images/Parties/baby and bridal showers/showers-02.webp", "Love grows with every little kick", "Expectant parents sharing a maternity portrait"],
+      ["images/Parties/baby and bridal showers/showers-03.webp", "The sweetest new chapter", "Expectant mother celebrating her pregnancy"],
+      ["images/Parties/baby and bridal showers/showers-04.webp", "Counting down to our little miracle", "Expectant mother posing for a portrait"],
+      ["images/Parties/baby and bridal showers/showers-05.webp", "Already loved beyond measure", "Expectant parents posing together"]
+    ],
+    "conference-gallery": [
+      ["images/Conferences and Business meetings/AV7A7300.webp", "Sharing ideas from the conference stage", "Speaker presenting at the MUBS annual international management conference"],
+      ["images/Conferences and Business meetings/AV7A7617.webp", "Perspectives that move us forward", "Panel discussion at the MUBS annual international management conference"],
+      ["images/Conferences and Business meetings/AV7A8066.webp", "Together for the next big idea", "Conference participants gathered on stage"]
     ]
   };
 
   Object.entries(galleries).forEach(([sectionId, photos]) => {
     const section = document.getElementById(sectionId);
-    const gallery = section?.querySelector(".gallery");
+    const gallery = section?.classList.contains("gallery")
+      ? section
+      : section?.querySelector(".gallery");
     if (!gallery) {
       throw new Error(`Missing gallery container for #${sectionId}`);
     }
 
-    gallery.replaceChildren(...photos.map(([src, description]) => {
+    gallery.replaceChildren(...photos.map(([src, captionText, alt = captionText]) => {
       const figure = document.createElement("figure");
       const image = document.createElement("img");
       image.src = src;
-      image.alt = description;
+      image.alt = alt;
       image.loading = "lazy";
 
       const caption = document.createElement("figcaption");
-      caption.textContent = description;
+      caption.textContent = captionText;
       figure.append(image, caption);
       return figure;
     }));
