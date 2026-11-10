@@ -88,8 +88,15 @@ main > section {
   scrollbar-color: var(--peach) #171612;
 }
 
+body[data-view] main > section {
+  display: none;
+}
+
 body[data-view="home"] main > #home,
-body[data-view="about"] main > #about,
+body[data-view="about"] main > #about {
+  display: grid;
+}
+
 body[data-view="packages"] main > #packages,
 body[data-view="weddings"] main > #weddings,
 body[data-view="traditional"] main > #traditional,
