@@ -252,6 +252,10 @@ body[data-view="contact"] main > #contact {
   color: var(--peach);
 }
 
+.navlinks #phoneLink .phone-number {
+  display: none;
+}
+
 @media (max-width: 850px) {
   .wrap {
     width: calc(100% - 190px);
@@ -283,15 +287,33 @@ body[data-view="contact"] main > #contact {
 
   .navlinks {
     width: 100%;
-    justify-content: flex-end;
+    justify-content: center;
+    gap: 8px;
   }
 
   .navlinks a:not(.book, #phoneLink) {
     display: none;
   }
 
+  .navlinks .book,
   .navlinks #phoneLink {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 10px 12px;
+    font-size: .72rem;
+    white-space: nowrap;
+  }
+
+  .navlinks #phoneLink {
+    gap: 4px;
+    border: 1px solid var(--peach);
+    border-radius: 30px;
+    color: var(--peach);
+  }
+
+  .navlinks #phoneLink .phone-number {
+    display: inline;
   }
 
   main {
@@ -316,7 +338,12 @@ body[data-view="contact"] main > #contact {
     transform: none;
     background: rgba(9, 9, 9, .98);
     border-top: 1px solid var(--line);
-    scrollbar-width: thin;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .category-side-nav::-webkit-scrollbar {
+    display: none;
   }
 
   .category-side-nav > a {

@@ -55,8 +55,13 @@
     const phoneLink = document.createElement("a");
     phoneLink.id = "phoneLink";
     phoneLink.href = phone.href;
-    phoneLink.textContent = "Call";
-    phoneLink.setAttribute("aria-label", "Call Visual Vibes Photography");
+    const phoneLabel = document.createElement("span");
+    phoneLabel.textContent = "Call";
+    const phoneNumber = document.createElement("span");
+    phoneNumber.className = "phone-number";
+    phoneNumber.textContent = "+256 775 615 613";
+    phoneLink.append(phoneLabel, phoneNumber);
+    phoneLink.setAttribute("aria-label", "Call Visual Vibes Photography on +256 775 615 613");
     headerLinks.appendChild(phoneLink);
   }
 
